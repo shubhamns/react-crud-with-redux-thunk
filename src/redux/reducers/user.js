@@ -43,14 +43,17 @@ export function user(state = initialState, action) {
     case GET_USER_REQUEST:
       return {
         ...state,
+        loading: true,
       };
     case GET_USER_SUCCESS:
       return {
         ...state,
+        loading: false,
         users: action.payload,
       };
     case GET_USER_FAILURE:
       return {
+        loading: false,
         ...state,
       };
 
@@ -92,8 +95,8 @@ export function user(state = initialState, action) {
     case DELETE_USER_BYID_SUCCESS:
       return {
         ...state,
-        users: state.users.filter((res) => res._id !== action.payload),
         loading: false,
+        users: state.users.filter((res) => res._id !== action.payload),
       };
     case DELETE_USER_BYID_FAILURE:
       return {
