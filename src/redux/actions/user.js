@@ -39,7 +39,7 @@ export function createUser(data, history) {
       const { response } = error;
       console.error(response);
       dispatch({ type: CREATE_USER_FAILURE });
-      toast(response.data.message);
+      toast(response?.data?.message || "Something went wrong.");
     }
   };
 }
@@ -54,7 +54,10 @@ export function getUsers() {
     } catch (error) {
       const { response } = error;
       console.error(response);
-      dispatch({ type: GET_USER_FAILURE, payload: response.data.message });
+      dispatch({
+        type: GET_USER_FAILURE,
+        payload: response?.data?.message || "Something went wrong.",
+      });
     }
   };
 }
@@ -69,7 +72,10 @@ export function getUserById(id) {
     } catch (error) {
       const { response } = error;
       console.error(response);
-      dispatch({ type: GET_USER_BYID_FAILURE, payload: response.data.message });
+      dispatch({
+        type: GET_USER_BYID_FAILURE,
+        payload: response?.data?.message || "Something went wrong.",
+      });
     }
   };
 }
@@ -89,7 +95,7 @@ export function updateUserById(id, data, history) {
       const { response } = error;
       console.error(response);
       dispatch({ type: UPDATE_USER_BYID_FAILURE });
-      toast(response.data.message);
+      toast(response?.data?.message || "Something went wrong.");
     }
   };
 }
@@ -106,7 +112,7 @@ export function deleteUserById(id) {
       const { response } = error;
       console.error(response);
       dispatch({ type: DELETE_USER_BYID_FAILURE });
-      toast(response.data.message);
+      toast(response?.data?.message || "Something went wrong.");
     }
   };
 }
